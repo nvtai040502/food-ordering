@@ -1,8 +1,8 @@
 import Image from "next/image";
-import { Button } from "./ui/button";
+import { Button } from "../ui/button";
 import { ArrowRightCircle } from "lucide-react";
 
-const Header = () => {
+const HomeHeader = () => {
   return ( 
     <div className="grid grid-cols-2">
 
@@ -42,4 +42,4 @@ const Header = () => {
    );
 }
  
-export default Header;
+export default HomeHeader;
