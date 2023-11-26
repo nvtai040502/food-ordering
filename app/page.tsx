@@ -1,4 +1,5 @@
 import Header from "@/components/header";
+import HomeMenu from "@/components/home-menu";
 import Navbar from "@/components/navbar";
 
 export default function Home() {
@@ -9,7 +10,7 @@ export default function Home() {
 
         <Header />
 
-        
+        <HomeMenu />
 
       </div>
       
