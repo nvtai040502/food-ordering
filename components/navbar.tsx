@@ -13,8 +13,10 @@ const Navbar = () => {
       
       <div className="flex gap-8 items-center">
         
-        <h1 className="uppercase text-red-500">
-          Food ordering
+        <h1 className="hidden md:flex uppercase text-primary">
+          Food&nbsp; 
+          <span>ordering
+          </span>
         </h1>
 
         <div className="flex gap-2">
@@ -33,7 +35,7 @@ const Navbar = () => {
               <UserButton afterSignOutUrl="/"/>
             </div>
           ) : (
-            <div>
+            <div className=" flex gap-2 ">
               {/* If not login yet */}
               <Link href="/sign-in">
                 <Button variant="ghost">Login</Button>
