@@ -1,24 +1,31 @@
 import { currentUser } from "@clerk/nextjs";
-import FormSetup from "./form-setup";
+import FormTextSetup from "./form-text";
+import FormImageSetup from "./form-image";
 import { Profile } from "@prisma/client";
 
 const ProfileSetup = async ({profile}: {profile: Profile | null}) => {
   const user = await currentUser()
 
   const name = profile ? profile.name : `${user?.lastName} ${user?.firstName}`;
-  const imageUrl = profile ? profile.imageUrl : user?.imageUrl || "/pizza.png";
+  const imageUrl = profile ? profile.imageUrl : user?.imageUrl;
   const email = profile ? profile.email : user?.emailAddresses?.[0]?.emailAddress ;
 
 
   return ( 
-    
-        <FormSetup 
+    <div className="grid grid-cols-4 w-full max-w-4xl gap-2">
+
+      <div className="col-span-1 flex justify-center">
+        <FormImageSetup imageUrl={imageUrl}/>
+      </div>
+      
+      <div className="col-span-3">
+        <FormTextSetup 
           name={name}
-          imageUrl={imageUrl}
           email={email}  
           profile={profile}
         />
-
+      </div>
+    </div>
    );
 }
  

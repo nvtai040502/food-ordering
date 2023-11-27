@@ -1,4 +1,4 @@
-import { auth, currentUser, redirectToSignIn } from "@clerk/nextjs";
+import { currentUser, redirectToSignIn } from "@clerk/nextjs";
 import ProfileSetup from "./_components/profile-setup";
 import { db } from "@/lib/db";
 

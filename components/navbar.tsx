@@ -30,7 +30,7 @@ const Navbar = () => {
       
       </div>
 
-      <div className="md:hidden flex">
+      <div className="md:hidden">
         <ModeMobile />
       </div>
 
