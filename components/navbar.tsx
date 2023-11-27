@@ -33,12 +33,16 @@ const Navbar = () => {
       <div className="md:hidden flex">
         <ModeMobile />
       </div>
-      
+
       <div className="flex gap-2">
         {user.isSignedIn ? (
             <div className="flex items-center">
               {/* If login */}
-              <UserButton afterSignOutUrl="/"/>
+              <Link href="/profile">
+                <Button variant="ghost">
+                  Hello, {user.user.firstName}
+                </Button>
+              </Link>
             </div>
           ) : (
             <div className=" flex gap-2 ">
