@@ -4,6 +4,8 @@ import { Button } from "./ui/button";
 import Link from "next/link";
 import { UserButton, useUser } from "@clerk/nextjs";
 import { ModeToggle } from "./mode-toggle";
+import { ModeMobile } from "./mode-mobile";
+
 
 const Navbar = () => {
   const user = useUser()
@@ -11,7 +13,7 @@ const Navbar = () => {
   return ( 
     <div className=" flex justify-between items-center">
       
-      <div className="flex gap-8 items-center">
+      <div className="hidden md:flex gap-8 items-center">
         
         <h1 className="hidden md:flex uppercase text-primary">
           Food&nbsp; 
@@ -28,6 +30,10 @@ const Navbar = () => {
       
       </div>
 
+      <div className="md:hidden flex">
+        <ModeMobile />
+      </div>
+      
       <div className="flex gap-2">
         {user.isSignedIn ? (
             <div className="flex items-center">
