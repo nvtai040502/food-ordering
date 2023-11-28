@@ -5,7 +5,7 @@ import { X } from "lucide-react";
 import { Button } from "./ui/button";
 
 interface FileUploadProps {
-  endpoint: "profileImage"
+  endpoint: "uploadImage"
   value: string
   onChange: (url?: string) => void
 }
@@ -39,6 +39,8 @@ export const FileUpload = ({
 
   return (
     <UploadDropzone
+      
+      
       endpoint={endpoint}
       onClientUploadComplete={(res) => {
         onChange(res?.[0].url);

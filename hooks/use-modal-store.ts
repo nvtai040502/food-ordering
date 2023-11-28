@@ -1,13 +1,19 @@
-import { Category } from "@prisma/client"
+import { Category, MenuItem } from "@prisma/client"
 import { create } from "zustand"
 
 export type ModalType = 
 "editCategoryName" |
-"deleteCategory"
+"deleteCategory" |
+"createMenuItem" |
+"editMenuItem" |
+"uploadImage"
 
-interface ModalData {
+export type ModalData = {
   category?: Category
+  categories?: Category[]
+  menuItem?: MenuItem
 }
+
 
 interface ModalStore {
   type: ModalType | null,
@@ -20,8 +26,9 @@ interface ModalStore {
 
 export const useModal = create<ModalStore>((set) => ({
   type: null,
+  mode: null,
   data: {},
   isOpen: false,
   onOpen: (type, data={}) => set({isOpen: true, type, data}),
-  onClose: () => set({isOpen: false, type: null, data: {}})
+  onClose: () => set({isOpen: false, type: null,data: {}})
 }))

@@ -1,8 +1,9 @@
 "use client";
 
-import DeleteCategoryModal from "@/app/(setting)/category/_component/modal/delete";
-import EditCategoryNameModal from "@/app/(setting)/category/_component/modal/edit-name";
+import DeleteCategoryModal from "@/components/modals/category/delete";
+import EditCategoryNameModal from "@/components/modals/category/edit-name";
 import { useEffect, useState } from "react";
+import CreateMenuItemModal from "../modals/menu-item/create-modal";
 
 
 export function ModalProvider() {
@@ -20,6 +21,7 @@ export function ModalProvider() {
     <>
       <EditCategoryNameModal />
       <DeleteCategoryModal />
+      <CreateMenuItemModal />
     </>
   )
 }
