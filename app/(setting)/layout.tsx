@@ -1,4 +1,5 @@
 import Navbar from "@/components/navbar";
+import { ModalProvider } from "@/components/providers/modal-provider";
 import React from "react";
 
 const LayoutSetting = ({children}: {children: React.ReactNode}) => {
@@ -8,6 +9,7 @@ const LayoutSetting = ({children}: {children: React.ReactNode}) => {
         <Navbar />
         <div className="mx-auto max-w-4xl w-full">
           {children}
+          <ModalProvider />
         </div>
     </div>
    );
