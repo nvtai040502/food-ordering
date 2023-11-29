@@ -50,8 +50,8 @@ model MenuItem {
   basePrice Int
   size String
 
-  categoryId String @db.ObjectId
-  category Category @relation(fields: [categoryId], references: [id])
+  categoryId String? @db.ObjectId
+  category Category? @relation(fields: [categoryId], references: [id])
 }
 
 model Order {

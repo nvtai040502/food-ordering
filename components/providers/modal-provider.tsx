@@ -1,11 +1,12 @@
 "use client";
 
 import DeleteCategoryModal from "@/components/modals/category/delete";
-import EditCategoryNameModal from "@/components/modals/category/edit-name";
 import { useEffect, useState } from "react";
 import CreateMenuItemModal from "../modals/menu-item/create-modal";
 import EditMenuItemModal from "../modals/menu-item/edit-modal";
 import DeleteMenuItemModal from "../modals/menu-item/delete-modal";
+import EditCategoryModal from "../modals/category/edit";
+import CreateCategoryModal from "../modals/category/create";
 
 
 export function ModalProvider() {
@@ -22,7 +23,8 @@ export function ModalProvider() {
   return (
     <>
       {/* Category */}
-      <EditCategoryNameModal />
+      <CreateCategoryModal />
+      <EditCategoryModal />
       <DeleteCategoryModal />
 
       {/* Menu Item */}

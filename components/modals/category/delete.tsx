@@ -24,7 +24,8 @@ const DeleteCategoryModal = () => {
       router.refresh()
     } catch (error) {
       toast({
-        title: "Something went wrong",
+        title: `Something went wrong.`,
+        description: `Error: ${error}`
       });
     } finally {
       onClose()
@@ -38,7 +39,7 @@ const DeleteCategoryModal = () => {
           Delete Category
         </DialogTitle>
         <DialogDescription>
-          Are you sure, you want to delete category "{data.category?.name}"
+          Are you sure, you want to delete category "{data.category?.name}."
         </DialogDescription>
         <DialogFooter>
           <Button onClick={onSubmit} variant="destructive">

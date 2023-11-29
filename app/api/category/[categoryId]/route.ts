@@ -43,14 +43,24 @@ export async function DELETE(
       return new NextResponse("Unauthorized", { status: 401 });
     }
 
-     const category = await db.category.deleteMany({
+    // First, Dissociate all menu items associated with the category
+    await db.menuItem.updateMany({
       where: {
-        id: params.categoryId
-      }
-     })
-    
+        categoryId: params.categoryId,
+      },
+      data: {
+        categoryId: null,
+      },
+    });
 
-    return NextResponse.json(category)
+    // Then, delete the category itself
+    const deletedCategory = await db.category.delete({
+      where: {
+        id: params.categoryId,
+      },
+    });
+
+    return NextResponse.json(deletedCategory);
   } catch(error) {
     console.log("[CATEGORY_ID_DELETE]", error);
     return new NextResponse("Internal Error", { status: 500 })

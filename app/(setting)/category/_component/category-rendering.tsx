@@ -13,7 +13,7 @@ const CategoryRendering = ({category}: {category: Category}) => {
           {category.name}
         </div>
         <div className=' flex justify-center items-center gap-4'>
-          <Button size="sm" variant="ghost" onClick={() => onOpen("editCategoryName", {category})}>Edit</Button>
+          <Button size="sm" variant="ghost" onClick={() => onOpen("editCategory", {category})}>Edit</Button>
           <Button size="sm" variant="ghost" onClick={() => onOpen("deleteCategory", {category})}>Delete</Button>
         </div>
       </div>

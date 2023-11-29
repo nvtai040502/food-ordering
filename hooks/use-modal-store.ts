@@ -2,7 +2,8 @@ import { Category, MenuItem } from "@prisma/client"
 import { create } from "zustand"
 
 export type ModalType = 
-"editCategoryName" |
+"createCategory" |
+"editCategory" |
 "deleteCategory" |
 "createMenuItem" |
 "editMenuItem" |
