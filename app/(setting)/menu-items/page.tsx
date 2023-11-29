@@ -16,7 +16,6 @@ const MenuItemsPage = async () => {
                 <MenuItemCard 
                   menuItem= {menuItem}
                   categories = {categories}
-                  
                 />
               </div>
             ))}

@@ -4,12 +4,14 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '
 import { Input } from '@/components/ui/input';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Category, MenuItem } from '@prisma/client';
-import { useForm } from 'react-hook-form';
+import { set, useForm } from 'react-hook-form';
 import * as z from "zod";
 import axios from "axios"
 import { useToast } from '@/components/ui/use-toast';
 import { useRouter } from 'next/navigation';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { FileUpload } from '@/components/file-upload';
+import { useModal } from '@/hooks/use-modal-store';
 
 const formScheme = z.object({
   name: z.string().min(2, {
@@ -31,7 +33,6 @@ const FormTextSetup = ({
   menuItem
 }: FormTextSetupProps
 ) => {
-
   const form = useForm<z.infer<typeof formScheme>>({
     resolver: zodResolver(formScheme),
     defaultValues: {
@@ -49,22 +50,22 @@ const FormTextSetup = ({
 
   const onSubmit = async (values: z.infer<typeof formScheme>) => {
     try {
-      await axios.post(`/api/menu-items`, values)
+      await axios.patch(`/api/menu-items/${menuItem?.id}`, values)
       toast({
-        title: "Updated Profile Success",
+        title: "Updated MenuItem Success",
       }) 
       router.refresh()
     } catch(error) {
       console.log(error)
-      toast({title: "Some thing went wrong `${error}`"})
+      toast({title: `Something went wrong: ${error}`})
     }
   };
 
   return (
-    <div className=''>
-      
+    <div className="">
+      <div>
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className='flex flex-col gap-4'>
+        <form onSubmit={form.handleSubmit(onSubmit)} className=''>          
           <FormField
             disabled={isSubmitting}
             control={form.control}
@@ -82,7 +83,7 @@ const FormTextSetup = ({
               </FormItem>
             )}
           />
-
+            
           <FormField
             disabled={isSubmitting}
             control={form.control}
@@ -93,7 +94,7 @@ const FormTextSetup = ({
                 <FormControl>
                   <Input
                     type="text"
-                    placeholder="test@example.com"
+                    placeholder=""
                     {...field} />
                 </FormControl>
                 <FormMessage />
@@ -164,11 +165,16 @@ const FormTextSetup = ({
             )}
           />
 
-          <Button disabled={isSubmitting} className='md:w-40 w-full'>Create</Button>
-          
+            <Button disabled={isSubmitting} className="md:w-1/3 w-1/2">Update</Button>
         </form>
       </Form>
-      <Button>Delete</Button>
+        <div className='flex justify-end'>
+          <Button>
+            Delete
+          </Button>
+        </div>
+
+      </div>
     </div>
   );
 };

@@ -11,7 +11,7 @@ const CreateMenuItemModal = () => {
     <Dialog open={isModalOpen} onOpenChange={onClose}>
       <DialogContent className="max-w-screen-md">
         <DialogTitle className="flex justify-center text-primary">
-          Menu Item {data.categories?.length}
+          Menu Item
         </DialogTitle>
 
         <FormMenuItemSetup categories={data.categories}/>

@@ -92,7 +92,7 @@ const FormImageSetup = ({imageUrl}:{imageUrl:string | undefined}) => {
 
                   <FormControl>
                     <FileUpload
-                      endpoint="profileImage"
+                      endpoint="uploadImage"
                       value={field.value}
                       onChange={field.onChange} 
                     />

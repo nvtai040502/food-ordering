@@ -51,7 +51,7 @@ const FormMenuItemSetup = ({
     try {
       await axios.post(`/api/menu-items`, values)
       toast({
-        title: "Updated MenuItem Success",
+        title: "Created MenuItem Success",
       }) 
       router.refresh()
     } catch(error) {

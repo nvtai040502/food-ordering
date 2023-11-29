@@ -11,6 +11,7 @@ import { useToast } from '@/components/ui/use-toast';
 import { FileUpload } from '@/components/file-upload';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
+import { MenuItem } from '@prisma/client';
 
 
 const formScheme = z.object({
@@ -19,7 +20,14 @@ const formScheme = z.object({
   })
 })
 
-const FormImageSetup = ({imageUrl}:{imageUrl:string | undefined | null}) => {
+interface FormImageSetupProps {
+  menuItem?: MenuItem
+}
+
+const FormImageSetup = ({
+  menuItem,
+}:FormImageSetupProps
+) => {
   const form = useForm<z.infer<typeof formScheme>>({
     resolver: zodResolver(formScheme),
     defaultValues: {
@@ -36,31 +44,31 @@ const FormImageSetup = ({imageUrl}:{imageUrl:string | undefined | null}) => {
 
   const onSubmit = async (values: z.infer<typeof formScheme>) => {
     try{
-      await axios.post(`/api/menu-items`, values)
+      await axios.patch(`/api/menu-items/${menuItem?.id}`, values)
       toast({
-        title: "Updated Image Profile Success",
+        title: "Updated Image Menu Item Success",
       })
       router.refresh();
     } catch (error) {
       toast({
-        title: "Something Went Wrong `${error}`",
+        title: `Something Went Wrong ${error}`,
       })
     } finally {
       setIsEditting(false)
     }
   }
   return ( 
-    <div className='w-full flex flex-col gap-2'>
+    <div className='w-full flex flex-col gap-2 items-center'>
         { isEditting ? (
 
-          <Button onClick={onClose} variant="ghost" disabled={isSubmitting}>
+          <Button onClick={onClose} variant="ghost" disabled={isSubmitting} className='w-full'>
 
           <X className='h-4 w-4 mr-2'/>
           Cancel
         </Button>
         ):
         (
-          <Button onClick={onClick} variant="ghost">
+          <Button onClick={onClick} variant="ghost" className='w-full'>
 
             <Pencil className='h-4 w-4 mr-2'/>
             Edit
@@ -69,14 +77,18 @@ const FormImageSetup = ({imageUrl}:{imageUrl:string | undefined | null}) => {
         )}
 
         { !isEditting ? (
-          imageUrl && (
+          menuItem?.imageUrl ? (
             <div className="relative">
               <Image
                 height={200}
                 width={200}
-                src={imageUrl}
+                src={menuItem?.imageUrl}
                 alt="Upload"
               />
+            </div>
+          ) : (
+            <div>
+              No Image
             </div>
           )
         ): (
@@ -92,7 +104,7 @@ const FormImageSetup = ({imageUrl}:{imageUrl:string | undefined | null}) => {
 
                   <FormControl>
                     <FileUpload
-                      endpoint="profileImage"
+                      endpoint="uploadImage"
                       value={field.value}
                       onChange={field.onChange} 
                     />
