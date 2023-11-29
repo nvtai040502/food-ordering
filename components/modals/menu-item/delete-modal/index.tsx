@@ -6,25 +6,25 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 
 
-const DeleteCategoryModal = () => {
+const DeleteMenuItemModal = () => {
   const { isOpen, onClose, type, data } = useModal();
 
-  const isModalOpen = isOpen && type === "deleteCategory";
+  const isModalOpen = isOpen && type === "deleteMenuItem";
   const { toast } = useToast()
   
   const router = useRouter()
 
   const onSubmit = async () => {
     try {
-      await axios.delete(`/api/category/${data.category?.id}`)
+      await axios.delete(`/api/menu-items/${data.menuItem?.id}`)
       
       toast({
-        title: "Delete Category Success",
+        title: "Delete Menu Item Success",
       })
       router.refresh()
     } catch (error) {
       toast({
-        title: "Something went wrong",
+        title: `Something went wrong ${error}`,
       });
     } finally {
       onClose()
@@ -35,10 +35,10 @@ const DeleteCategoryModal = () => {
     <Dialog open={isModalOpen} onOpenChange={onClose}>
       <DialogContent>
         <DialogTitle>
-          Delete Category
+          Delete Menu Item
         </DialogTitle>
         <DialogDescription>
-          Are you sure, you want to delete category "{data.category?.name}"
+          Are you sure, you want to delete Menu Item "{data.menuItem?.name}"
         </DialogDescription>
         <DialogFooter>
           <Button onClick={onSubmit} variant="destructive">
@@ -51,4 +51,4 @@ const DeleteCategoryModal = () => {
    );
 }
  
-export default DeleteCategoryModal;
+export default DeleteMenuItemModal;

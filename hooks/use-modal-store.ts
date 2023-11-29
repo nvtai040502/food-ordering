@@ -6,7 +6,7 @@ export type ModalType =
 "deleteCategory" |
 "createMenuItem" |
 "editMenuItem" |
-"uploadImage"
+"deleteMenuItem"
 
 export type ModalData = {
   category?: Category

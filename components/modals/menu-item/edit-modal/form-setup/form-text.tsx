@@ -58,8 +58,10 @@ const FormTextSetup = ({
     } catch(error) {
       console.log(error)
       toast({title: `Something went wrong: ${error}`})
-    }
+    } 
   };
+
+  
 
   return (
     <div className="">
@@ -168,11 +170,7 @@ const FormTextSetup = ({
             <Button disabled={isSubmitting} className="md:w-1/3 w-1/2">Update</Button>
         </form>
       </Form>
-        <div className='flex justify-end'>
-          <Button>
-            Delete
-          </Button>
-        </div>
+        
 
       </div>
     </div>

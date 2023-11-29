@@ -5,6 +5,7 @@ import EditCategoryNameModal from "@/components/modals/category/edit-name";
 import { useEffect, useState } from "react";
 import CreateMenuItemModal from "../modals/menu-item/create-modal";
 import EditMenuItemModal from "../modals/menu-item/edit-modal";
+import DeleteMenuItemModal from "../modals/menu-item/delete-modal";
 
 
 export function ModalProvider() {
@@ -20,10 +21,14 @@ export function ModalProvider() {
 
   return (
     <>
+      {/* Category */}
       <EditCategoryNameModal />
       <DeleteCategoryModal />
+
+      {/* Menu Item */}
       <CreateMenuItemModal />
       <EditMenuItemModal />
+      <DeleteMenuItemModal />
     </>
   )
 }

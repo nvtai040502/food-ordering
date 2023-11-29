@@ -54,7 +54,7 @@ const FormImageSetup = ({
         title: `Something Went Wrong ${error}`,
       })
     } finally {
-      setIsEditting(false)
+      onClose()
     }
   }
   return ( 

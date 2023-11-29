@@ -45,3 +45,27 @@ export async function PATCH(
   }
 }
 
+export async function DELETE(
+  req: Request,
+  { params }: { params: { menuItemId: string } }
+) {
+  try {
+    const { userId } = auth();
+    if (!userId) {
+      return new NextResponse("Unauthorized", { status: 401 });
+    }
+
+     const menuItem = await db.menuItem.deleteMany({
+      where: {
+        id: params.menuItemId
+      }
+     })
+    
+
+    return NextResponse.json(menuItem)
+  } catch(error) {
+    console.log("[MENU_ITEM_ID_DELETE]", error);
+    return new NextResponse("Internal Error", { status: 500 })
+  }
+}
+
