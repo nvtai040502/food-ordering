@@ -6,7 +6,15 @@ const CreateCategory = () => {
   const { onOpen } = useModal()
   return ( 
     <div>
-      <Button onClick={() => {onOpen("createCategory")}}>Create</Button>
+
+      <Button 
+        onClick={() => {onOpen("createCategory")}}
+        size="sm"
+        variant="ghost"  
+        className='w-full'
+      >
+          New Category
+      </Button>
     </div>
    );
 }

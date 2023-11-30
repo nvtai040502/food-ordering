@@ -31,7 +31,10 @@ const FormMenuItemSetup = ({
       </div>
 
       <div className='flex justify-end mt-2 col-span-3'>
-        <Button onClick={() => {onOpen("deleteMenuItem", {menuItem})}}>
+        <Button 
+          onClick={() => {onOpen("deleteMenuItem", {menuItem})}}
+          variant="destructive"  
+        >
           Delete
         </Button>
       </div>

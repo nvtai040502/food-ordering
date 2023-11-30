@@ -12,6 +12,7 @@ import { FileUpload } from '@/components/file-upload';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { MenuItem } from '@prisma/client';
+import { useModal } from '@/hooks/use-modal-store';
 
 
 const formScheme = z.object({
@@ -34,14 +35,11 @@ const FormImageSetup = ({
       imageUrl: ""
     }
   })
-  
   const {isSubmitting, isValid}  = form.formState
   const [isEditting, setIsEditting] = useState(false)
-  const onClose = () => {setIsEditting(false)}
-  const onClick = () => {setIsEditting(true)}
+
   const { toast } = useToast()
   const router = useRouter();
-
   const onSubmit = async (values: z.infer<typeof formScheme>) => {
     try{
       await axios.patch(`/api/menu-items/${menuItem?.id}`, values)
@@ -54,21 +52,21 @@ const FormImageSetup = ({
         title: `Something Went Wrong ${error}`,
       })
     } finally {
-      onClose()
+      setIsEditting(false)
     }
   }
   return ( 
     <div className='w-full flex flex-col gap-2 items-center'>
         { isEditting ? (
 
-          <Button onClick={onClose} variant="ghost" disabled={isSubmitting} className='w-full'>
+          <Button onClick={() => {setIsEditting(false)}} variant="ghost" disabled={isSubmitting} className='w-full'>
 
           <X className='h-4 w-4 mr-2'/>
           Cancel
         </Button>
         ):
         (
-          <Button onClick={onClick} variant="ghost" className='w-full'>
+          <Button onClick={() => {setIsEditting(true)}} variant="ghost" className='w-full'>
 
             <Pencil className='h-4 w-4 mr-2'/>
             Edit

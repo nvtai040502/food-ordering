@@ -7,7 +7,14 @@ const CreateMenuItem = ({categories}: {categories: Category[]}) => {
   const { onOpen } = useModal()
   return ( 
     <div>
-      <Button onClick={() => onOpen("createMenuItem", {categories})}>Create</Button>
+      <Button 
+        onClick={() => onOpen("createMenuItem", {categories})}
+        size="sm"
+        variant="ghost"  
+        className='w-full'
+      >
+        New Menu Item
+      </Button>
     </div>
    );
 }

@@ -4,13 +4,12 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '
 import { Input } from '@/components/ui/input';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Category, MenuItem } from '@prisma/client';
-import { set, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import * as z from "zod";
 import axios from "axios"
 import { useToast } from '@/components/ui/use-toast';
 import { useRouter } from 'next/navigation';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { FileUpload } from '@/components/file-upload';
 import { useModal } from '@/hooks/use-modal-store';
 
 const formScheme = z.object({
@@ -40,10 +39,10 @@ const FormTextSetup = ({
       description: menuItem?.description,
       size: menuItem?.size,
       basePrice: menuItem?.basePrice,
-      categoryId: menuItem?.categoryId
+      categoryId: menuItem?.categoryId || ""
     }
   });
-
+  const { onClose } = useModal()
   const { isSubmitting } = form.formState;
   const { toast } = useToast()
   const router = useRouter()
@@ -58,23 +57,23 @@ const FormTextSetup = ({
     } catch(error) {
       console.log(error)
       toast({title: `Something went wrong: ${error}`})
-    } 
+    } finally {
+      onClose()
+    }
   };
 
   
 
   return (
-    <div className="">
-      <div>
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className=''>          
+        <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-2'>          
           <FormField
             disabled={isSubmitting}
             control={form.control}
             name="name"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Full Name</FormLabel>
+                <FormLabel> Name</FormLabel>
                 <FormControl>
                   <Input
                     type="text"
@@ -146,11 +145,11 @@ const FormTextSetup = ({
             name="categoryId"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Base Price</FormLabel>
+                <FormLabel>Category</FormLabel>
                 <Select onValueChange={field.onChange} defaultValue={field.value}>
                   <FormControl>
                     <SelectTrigger>
-                      <SelectValue placeholder="Select a verified email to display" />
+                      <SelectValue placeholder="Select a category" />
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
@@ -172,8 +171,6 @@ const FormTextSetup = ({
       </Form>
         
 
-      </div>
-    </div>
   );
 };
 
