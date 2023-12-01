@@ -1,10 +1,11 @@
 "use client"
 import { Category, MenuItem } from "@prisma/client";
-import { Draggable } from "@hello-pangea/dnd";
+import { Draggable, Droppable } from "@hello-pangea/dnd";
 import EditCategory from "@/app/(setting)/category/_component/edit-category";
 import DeleteCategory from "@/app/(setting)/category/_component/delete-category";
 import MenuItemRendering from "./menu-item-render";
 import { CategoryWithMenuItems } from "@/type";
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 interface CategoryRenderingProps {
   categories: CategoryWithMenuItems[]
   category: Category
@@ -20,7 +21,10 @@ const CategoryRendering = ({
 ) => {
   
   return ( 
-    <Draggable draggableId={category.id} index={index}>
+    <Draggable 
+      draggableId={category.id}
+      index={index}
+    >
       {(provided) => (
         <div 
           {...provided.draggableProps}
@@ -38,13 +42,35 @@ const CategoryRendering = ({
               <DeleteCategory category={category} />
             </div>
           </div>
+            
+            <Droppable 
+              direction="horizontal"
+              droppableId={category.id} 
+              type="menuItem" 
+            >
+              {(provided) => (
+                <ScrollArea>
+                  <div 
+                    {...provided.droppableProps} 
+                    ref={provided.innerRef}
+                    className="flex gap-4 p-8"
+                  >
+                    {menuItems.map((menuItem, index) => (
+                      <MenuItemRendering 
+                        key={menuItem.id}
+                        categories={categories}
+                        menuItem={menuItem} 
+                        index={index}
+                      />
+                    ))} 
 
-            <MenuItemRendering 
-              categories={categories}
-              category={category} 
-              menuItems={menuItems} 
-            />
-        
+                    {provided.placeholder}
+                  </div>
+                  <ScrollBar orientation="horizontal"  className=" h-4"/>
+                </ScrollArea>
+              )}
+            </Droppable>
+
         </div>
       )}
     </Draggable>
