@@ -1,18 +1,18 @@
 "use client"
 import { Category, MenuItem } from "@prisma/client";
-import EditCategory from './edit-category';
-import DeleteCategory from './delete-category';
-import { db } from "@/lib/db";
-import MenuItemCard from "../../menu-items/_components/card";
-
-import TestA from "../../menu-items/_components/test";
-import { DragDropContext, Draggable } from "@hello-pangea/dnd";
+import { Draggable } from "@hello-pangea/dnd";
+import EditCategory from "@/app/(setting)/category/_component/edit-category";
+import DeleteCategory from "@/app/(setting)/category/_component/delete-category";
+import MenuItemRendering from "./menu-item-render";
+import { CategoryWithMenuItems } from "@/type";
 interface CategoryRenderingProps {
+  categories: CategoryWithMenuItems[]
   category: Category
   menuItems: MenuItem[]
   index: number
 }
 const CategoryRendering = ({
+  categories,
   category,
   menuItems,
   index
@@ -38,7 +38,13 @@ const CategoryRendering = ({
               <DeleteCategory category={category} />
             </div>
           </div>
-            <TestA category={category} menuItems={menuItems} index={index} />
+
+            <MenuItemRendering 
+              categories={categories}
+              category={category} 
+              menuItems={menuItems} 
+            />
+        
         </div>
       )}
     </Draggable>

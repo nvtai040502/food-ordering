@@ -1,12 +1,26 @@
 import { db } from "@/lib/db";
 import CreateCategory from "../category/_component/create-category";
-import CategoryRendering from "../category/_component/category-rendering";
 import CreateMenuItem from "../menu-items/_components/create-menu-item";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
+import { CategoryWithMenuItems } from "@/type";
+import AllFoodRendering from "./_components/rendering";
+
 
 const CategoryPage  = async () => {
-  const categories = await db.category.findMany()
+  const categories: CategoryWithMenuItems[] = await db.category.findMany({
+    include: {
+      menuItems: {
+        orderBy:{
+          updatedAt: "desc"
+        }
+      }
+    },
+    orderBy: {
+      updatedAt: "desc"
+    }
+
+  })
   return (
 
     <div className="flex flex-col gap-4"> 
@@ -28,15 +42,8 @@ const CategoryPage  = async () => {
         </DropdownMenuContent>
       </DropdownMenu>
       </div>
-   
-      <div className="flex flex-col gap-4">
-        {categories.map((category) => (
-          <div key={category.id}>
-            <CategoryRendering category={category} />
-          </div>
-        ))}
-        
-      </div>
+  
+      <AllFoodRendering categories={categories}/>
 
     </div>
    );

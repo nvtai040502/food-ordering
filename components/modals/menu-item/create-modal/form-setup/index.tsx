@@ -11,6 +11,7 @@ import { useToast } from '@/components/ui/use-toast';
 import { useRouter } from 'next/navigation';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { FileUpload } from '@/components/file-upload';
+import { useModal } from '@/hooks/use-modal-store';
 
 const formScheme = z.object({
   name: z.string().min(2, {
@@ -46,7 +47,7 @@ const FormMenuItemSetup = ({
   const { isSubmitting } = form.formState;
   const { toast } = useToast()
   const router = useRouter()
-
+  const { onClose } = useModal()
   const onSubmit = async (values: z.infer<typeof formScheme>) => {
     try {
       await axios.post(`/api/menu-items`, values)
@@ -57,6 +58,8 @@ const FormMenuItemSetup = ({
     } catch(error) {
       console.log(error)
       toast({title: `Something went wrong: ${error}`})
+    } finally {
+      onClose()
     }
   };
   return (
