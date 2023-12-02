@@ -37,7 +37,7 @@ const MenuItemRendering = ({
             className="relative aspect-video"
           >
             {menuItem.imageUrl ? (
-              <Image src={menuItem.imageUrl} layout="fill" objectFit="contain" alt={`Image ${menuItem.name}`} />
+              <Image src={menuItem.imageUrl} layout="fill" objectFit="contain" alt={menuItem.name} />
             ) : (
               <NoImageRendering />
             )

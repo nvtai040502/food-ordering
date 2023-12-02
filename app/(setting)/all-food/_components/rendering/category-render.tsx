@@ -1,11 +1,11 @@
 "use client"
 import { Category, MenuItem } from "@prisma/client";
 import { Draggable, Droppable } from "@hello-pangea/dnd";
-import EditCategory from "@/app/(setting)/category/_component/edit-category";
-import DeleteCategory from "@/app/(setting)/category/_component/delete-category";
 import MenuItemRendering from "./menu-item-render";
 import { CategoryWithMenuItems } from "@/type";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
+import { Button } from "@/components/ui/button";
+import { useModal } from "@/hooks/use-modal-store";
 interface CategoryRenderingProps {
   categories: CategoryWithMenuItems[]
   category: Category
@@ -20,6 +20,8 @@ const CategoryRendering = ({
 }: CategoryRenderingProps
 ) => {
   
+  const { onOpen } = useModal()
+
   return ( 
     <Draggable 
       draggableId={category.id}
@@ -38,8 +40,8 @@ const CategoryRendering = ({
               {category.name} {category.order}
             </div>
             <div className=' flex justify-center items-center gap-4'>
-              <EditCategory category={category}/>
-              <DeleteCategory category={category} />
+              <Button size="sm" variant="ghost" onClick={() => onOpen("editCategory", {category})}>Edit</Button>
+              <Button size="sm" variant="ghost" onClick={() => onOpen("deleteCategory", {category})}>Delete</Button>
             </div>
           </div>
             

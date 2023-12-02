@@ -22,8 +22,12 @@ const Navbar = () => {
         </h1>
 
         <div className="flex gap-2">
-          <Button variant="ghost"> Hone </Button>
-          <Button variant="ghost"> Menu </Button>
+          <Link href="/">
+            <Button variant="ghost"> Hone </Button>
+          </Link>
+          <Link href="/menu">
+            <Button variant="ghost"> Menu </Button>
+          </Link>  
           <Button variant="ghost"> About </Button>
           <Button variant="ghost"> Contact </Button>
         </div>

@@ -4,7 +4,6 @@ import { CategoryWithMenuItems } from '@/type';
 import CategoryRendering from './category-render';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { MenuItem } from '@prisma/client';
 
 const AllFoodRendering = ({ categories }: { categories: CategoryWithMenuItems[] }) => {
   const [orderedCategories, setOrderedCategories] = useState<CategoryWithMenuItems[]>([]);
