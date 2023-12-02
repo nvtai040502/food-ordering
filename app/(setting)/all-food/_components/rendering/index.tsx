@@ -1,13 +1,19 @@
-"use client";
+"use client"
 import { DragDropContext, Droppable } from '@hello-pangea/dnd';
 import { CategoryWithMenuItems } from '@/type';
 import CategoryRendering from './category-render';
 import { useEffect, useState } from 'react';
+import axios from 'axios';
+import { MenuItem } from '@prisma/client';
 
 const AllFoodRendering = ({ categories }: { categories: CategoryWithMenuItems[] }) => {
-  const [orderedCategories, setOrderedCategories] = useState([...categories]);
+  const [orderedCategories, setOrderedCategories] = useState<CategoryWithMenuItems[]>([]);
 
-  const onDragEnd = (result: any) => {
+  useEffect(() => {
+    setOrderedCategories([...categories]);
+  }, [categories]);
+
+  const onDragEnd = async (result: any) => {
     const { destination, source, type } = result;
 
     if (!destination || (destination.droppableId === source.droppableId && destination.index === source.index)) {
@@ -18,7 +24,16 @@ const AllFoodRendering = ({ categories }: { categories: CategoryWithMenuItems[] 
       const updatedCategories = Array.from(orderedCategories);
       const [removed] = updatedCategories.splice(source.index, 1);
       updatedCategories.splice(destination.index, 0, removed);
-      setOrderedCategories(updatedCategories.map((item, index) => ({ ...item, order: index })));
+
+      const updatedCategoriesWithOrder = updatedCategories.map((item, index) => ({ ...item, order: index }));
+      setOrderedCategories(updatedCategoriesWithOrder);
+
+      try {
+        await axios.patch(`api/category/reorder/category`, { updateCategories: updatedCategoriesWithOrder });
+        console.log("success")
+      } catch (error) {
+        console.error('API Error:', error);
+      }
     }
 
     if (type === "menuItem") {
@@ -42,6 +57,13 @@ const AllFoodRendering = ({ categories }: { categories: CategoryWithMenuItems[] 
         updatedCategories[sourceCategoryIndex] = sourceCategory;
 
         setOrderedCategories(updatedCategories);
+
+        try {
+          await axios.patch(`api/category/reorder/menu-item`, { sourceCategory: sourceCategory });
+          console.log("success")
+        } catch (error) {
+          console.error('API Error:', error);
+        }
       } else {
         const [movedMenuItem] = sourceCategory.menuItems.splice(source.index, 1);
         movedMenuItem.categoryId = destination.droppableId;
@@ -54,6 +76,14 @@ const AllFoodRendering = ({ categories }: { categories: CategoryWithMenuItems[] 
         updatedCategories[destCategoryIndex] = destCategory;
 
         setOrderedCategories(updatedCategories);
+
+        try {
+          await axios.patch(`api/menu-items/${movedMenuItem.id}`, { categoryId: movedMenuItem.categoryId });
+          await axios.patch(`api/category/reorder/menu-item`, { sourceCategory: sourceCategory, destCategory: destCategory });
+          console.log("success")
+        } catch (error) {
+          console.error('API Error:', error);
+        }
       }
     }
   };

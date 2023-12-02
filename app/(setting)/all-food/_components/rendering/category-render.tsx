@@ -35,7 +35,7 @@ const CategoryRendering = ({
             <div 
               {...provided.dragHandleProps}
               className='font-medium text-2xl text-primary'>
-              {category.name}
+              {category.name} {category.order}
             </div>
             <div className=' flex justify-center items-center gap-4'>
               <EditCategory category={category}/>

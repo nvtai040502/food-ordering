@@ -12,7 +12,7 @@ export async function POST(
     }
 
     const { 
-      name
+      name 
     } = await req.json()    
 
      const category = await db.category.create({

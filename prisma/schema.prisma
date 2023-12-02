@@ -35,6 +35,7 @@ model Category {
   updatedAt DateTime @updatedAt
 
   name String
+  order Int?
 
   menuItems MenuItem[]
 }
@@ -49,7 +50,8 @@ model MenuItem {
   description String 
   basePrice Int
   size String
-
+  order Int?
+  
   categoryId String? @db.ObjectId
   category Category? @relation(fields: [categoryId], references: [id])
 }

@@ -12,12 +12,12 @@ const CategoryPage  = async () => {
     include: {
       menuItems: {
         orderBy:{
-          updatedAt: "desc"
+          order: "asc"
         }
       }
     },
     orderBy: {
-      updatedAt: "desc"
+      order: "asc"
     }
 
   })

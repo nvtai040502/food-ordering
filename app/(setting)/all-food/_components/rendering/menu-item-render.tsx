@@ -31,7 +31,6 @@ const MenuItemRendering = ({
           {...provided.dragHandleProps}
           role="button"
           onClick={() => {onOpen("editMenuItem", { categories, menuItem })}} 
-          // className="group hover:bg-slate-200/90 dark:hover:bg-slate-600 hover:shadow-sm transition overflow-hidden border rounded-lg p-4 flex flex-col gap-4 w-[200px]"
           className="group hover:bg-slate-200/90 dark:hover:bg-slate-600 hover:shadow-sm border rounded-lg p-4 flex flex-col gap-4 w-[180px]"
         >
           <div
@@ -48,7 +47,7 @@ const MenuItemRendering = ({
           <div
             className="flex flex-col items-center justify-center gap-2"
             >
-            <h2 className="text-lg font-bold">{menuItem.name} {index}</h2>
+            <h2 className="text-lg font-bold">{menuItem.name} {menuItem.order}</h2>
             <p className="text-sm">{menuItem.description}</p>  
             
           </div>
