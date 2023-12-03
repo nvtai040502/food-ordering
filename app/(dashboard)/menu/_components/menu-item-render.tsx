@@ -3,30 +3,26 @@ import NoImageRendering from "@/components/no-image";
 import { Button } from "@/components/ui/button";
 import { formatPrice } from "@/lib/fotmat-price";
 import { MenuItem } from "@prisma/client";
-import { BookmarkPlus, ShoppingCart } from "lucide-react";
+import { BookmarkPlus } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
 
-interface MenuItemRenderingProps{
-  menuItem: MenuItem
+interface MenuItemRenderingProps {
+  menuItem: MenuItem;
 }
-const MenuItemRendering = ({
-  menuItem
-}: MenuItemRenderingProps
-) => {
-  const router = useRouter()
-  const onClick = () => {
-    
-    try {
-      router.push(`/menu/${menuItem.id}`)
-    } catch (error) {
-      console.log(error)
-    } 
 
-  }
-  return ( 
+const MenuItemRendering = ({ menuItem }: MenuItemRenderingProps) => {
+  const router = useRouter();
+
+  const onClick = () => {
+      try {
+        router.push(`/menu/${menuItem.id}`);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+  return (
     <div
       role="button"
       className="group hover:bg-slate-200/90 dark:hover:bg-slate-600 hover:shadow-sm border rounded-lg p-4 flex flex-col gap-4 w-[200px]"
@@ -35,8 +31,8 @@ const MenuItemRendering = ({
       <div className="relative aspect-video">
         {menuItem.imageUrl ? (
           <Image src={menuItem.imageUrl} layout="fill" objectFit="contain" alt={menuItem.name} />
-          ) : (
-            <NoImageRendering />
+        ) : (
+          <NoImageRendering />
         )}
       </div>
       <div className="flex flex-col gap-2">
@@ -49,13 +45,12 @@ const MenuItemRendering = ({
             {formatPrice(menuItem.basePrice)}
           </div>
           <Button variant="outline">
-            
             <BookmarkPlus />
           </Button>
         </div>
       </div>
     </div>
-   );
-}
- 
+  );
+};
+
 export default MenuItemRendering;
