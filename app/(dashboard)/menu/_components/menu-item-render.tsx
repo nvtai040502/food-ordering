@@ -16,7 +16,7 @@ const MenuItemRendering = ({ menuItem }: MenuItemRenderingProps) => {
 
   const onClick = () => {
       try {
-        router.push(`/menu/${menuItem.id}`);
+        router.push(`/menu/menu-item/${menuItem.id}`);
       } catch (error) {
         console.log(error);
       }

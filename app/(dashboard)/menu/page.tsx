@@ -1,26 +1,29 @@
 import { db } from "@/lib/db";
 import CategoryRendering from "./_components/category_render";
-import SearchComponet from "@/components/search";
+import SearchComponent from "@/components/search";
+import { getCategories } from "@/action/get-categories";
 
-const MenuPage = async () => {
-  const categories = await db.category.findMany({
-    include: {
-      menuItems: {
-        orderBy: {
-          order: "asc"
-        }
-      }
-    }, orderBy: {
-      order: "asc"
-    }
+interface MenuPageProps {
+  searchParams: {
+    name: string;
+  }
+};
+
+const MenuPage = async ({
+  searchParams
+}: MenuPageProps
+) => {
+  const categories = await getCategories({
+    ...searchParams
   })
+
   return ( 
     <div className=" flex flex-col gap-8">
       <div className=" flex justify-between items-center">
         <h1 className="text-2xl text-primary font-medium">
           Menu Page
         </h1>
-        <SearchComponet />
+        <SearchComponent placeholder="Search for category" />
       </div>
       <div className="flex flex-col gap-8">
         {categories.map((category) => (
@@ -31,6 +34,11 @@ const MenuPage = async () => {
           )
         ))}
       </div>
+      {categories.length === 0 && (
+        <div className="text-center">
+          No category found
+        </div>
+      )}
     </div>
    );
 }

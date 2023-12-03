@@ -1,13 +1,13 @@
 "use client"
 import LoadingWrapper from "@/components/loading-wrapper";
+import BackToMenuPage from "../../_components/go-back";
 
 const MenuItemIdPage = () => {
   return ( 
-    <LoadingWrapper delay={10000}>
-      <div>
-        Menu Item Id Page
-      </div>
-    </LoadingWrapper>
+    <div>
+        <BackToMenuPage />
+        Menu Item Page
+    </div>
    );
 }
  
