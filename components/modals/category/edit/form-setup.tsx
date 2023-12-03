@@ -33,7 +33,7 @@ const formSchema = z.object({
   
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
-      await axios.patch(`/api/category/${category?.id}`, values)
+      await axios.patch(`/api/menu/categories/${category?.id}`, values)
       
       toast({
         title: "Change Name Category Success",

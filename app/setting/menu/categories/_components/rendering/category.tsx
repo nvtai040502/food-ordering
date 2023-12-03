@@ -1,8 +1,7 @@
 import { CategoryWithMenuItems } from "@/type";
-import MenuItemRendering from "./menu-item-render";
 import { getMenuItems } from "@/action/get-menu-items";
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
+import MenuItemRendering from "./menu-item";
+import { db } from "@/lib/db";
 
 interface CategoryRenderingProps {
   category: CategoryWithMenuItems
@@ -17,31 +16,31 @@ const CategoryRendering = async ({
 }: CategoryRenderingProps
 ) => {
 
+  const categories = await db.category.findMany()
+
   const menuItems = await getMenuItems({
     categoryId: category.id,
     ...searchParams
   })
 
   return ( 
-      <div className="flex flex-col gap-4">
-        <Link href={`/menu/category/${category.id}`}>
-          <Button variant="link" className="w-full">
-            <h1 className="text-primary text-2xl text-center">
-              {category.name}
-            </h1>
-          </Button>
-        </Link>
+      <div className="flex flex-col gap-8">
+        <h1 className="text-primary text-2xl text-center">
+          {category.name}
+        </h1>
         
         <div className="grid gap-4 grid-cols-4">
-          {menuItems.map((meuItem) => (
-            <div key={meuItem.id}>
-              <MenuItemRendering menuItem={meuItem} />
-            </div>
+          {menuItems.map((menuItem) => (
+            <MenuItemRendering 
+              key={menuItem.id}
+              categories={categories} 
+              menuItem={menuItem} 
+            />
           ))}
         </div>
         {menuItems.length === 0 && (
         <div className="text-center">
-          No menu items found
+          No menu item found
         </div>
       )}
 

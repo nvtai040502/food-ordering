@@ -2,13 +2,21 @@ import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 
-const BackToMenuPage = () => {
+interface GoBackProps{
+  href: string
+  title: string
+}
+const GoBack = ({
+  href,
+  title
+}: GoBackProps
+) => {
   return ( 
     <div>
-      <Link href="/menu">
+      <Link href={href}>
         <Button variant="link">
           <ArrowLeft className="h-4 w-4 mr-2"/>
-          back to menu page
+            {title}
         </Button>
       </Link>
 
@@ -16,4 +24,4 @@ const BackToMenuPage = () => {
    );
 }
  
-export default BackToMenuPage;
+export default GoBack;

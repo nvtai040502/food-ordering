@@ -16,7 +16,7 @@ const DeleteMenuItemModal = () => {
 
   const onSubmit = async () => {
     try {
-      await axios.delete(`/api/menu-items/${data.menuItem?.id}`)
+      await axios.delete(`/api/menu/menu-items/${data.menuItem?.id}`)
       
       toast({
         title: "Delete Menu Item Success",

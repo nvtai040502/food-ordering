@@ -29,7 +29,7 @@ const MenuPage = async ({
         {categories.map((category) => (
           category.menuItems.length > 0 && (
             <div key={category.id}>
-              <CategoryRendering category={category} />
+              <CategoryRendering category={category}/>
             </div>
           )
         ))}

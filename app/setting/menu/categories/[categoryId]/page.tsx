@@ -1,8 +1,9 @@
 import { db } from "@/lib/db";
-import CategoryRendering from "../../_components/category_render";
 import { redirect } from "next/navigation";
 import SearchComponent from "@/components/search";
 import GoBack from "@/components/go-back";
+import { getCategories } from "@/action/get-categories";
+import CategoryRendering from "../_components/rendering/category";
 
 interface CategoryIdMenuPageProps{
   params: {
@@ -17,6 +18,7 @@ const CategoryIdMenuPage = async ({
   searchParams
 }: CategoryIdMenuPageProps
 ) => {
+
 
   const category = await db.category.findUnique({
     where: {
@@ -38,13 +40,16 @@ const CategoryIdMenuPage = async ({
     <div>
       <div className="flex justify-between items-center">
         <GoBack 
-          href="/menu"
-          title="Back to menu page"
+          href="/setting/menu"
+          title="Back to setting menu"
         />
+        
         <SearchComponent placeholder="Search for menu item" />
       </div>
     <div>
-      <CategoryRendering category={category} searchParams={searchParams}/>
+      
+      <CategoryRendering category={category} searchParams={searchParams} />
+
     </div>
     </div>
    );

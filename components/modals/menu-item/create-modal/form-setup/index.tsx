@@ -50,7 +50,7 @@ const FormMenuItemSetup = ({
   const { onClose } = useModal()
   const onSubmit = async (values: z.infer<typeof formScheme>) => {
     try {
-      await axios.post(`/api/menu-items`, values)
+      await axios.post(`/api/menu/menu-items`, values)
       toast({
         title: "Created MenuItem Success",
       }) 

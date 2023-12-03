@@ -6,6 +6,8 @@ import { CategoryWithMenuItems } from "@/type";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { Button } from "@/components/ui/button";
 import { useModal } from "@/hooks/use-modal-store";
+import Link from "next/link";
+
 interface CategoryRenderingProps {
   categories: CategoryWithMenuItems[]
   category: Category
@@ -34,11 +36,15 @@ const CategoryRendering = ({
           className=" border-4 p-4 flex flex-col gap-4">
           
           <div className='flex flex-col justify-center items-center'>
-            <div 
-              {...provided.dragHandleProps}
-              className='font-medium text-2xl text-primary'>
-              {category.name} {category.order}
-            </div>
+            <Link href={`/setting/menu/categories/${category.id}`}>
+              <Button variant="link">
+                <div 
+                  {...provided.dragHandleProps}
+                  className='font-medium text-2xl text-primary'>
+                  {category.name}
+                </div>
+              </Button>
+            </Link>
             <div className=' flex justify-center items-center gap-4'>
               <Button size="sm" variant="ghost" onClick={() => onOpen("editCategory", {category})}>Edit</Button>
               <Button size="sm" variant="ghost" onClick={() => onOpen("deleteCategory", {category})}>Delete</Button>

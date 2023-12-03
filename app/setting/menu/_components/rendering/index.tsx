@@ -28,7 +28,7 @@ const AllFoodRendering = ({ categories }: { categories: CategoryWithMenuItems[] 
       setOrderedCategories(updatedCategoriesWithOrder);
 
       try {
-        await axios.patch(`api/category/reorder/category`, { updateCategories: updatedCategoriesWithOrder });
+        await axios.patch(`/api/menu/categories/reorder`, { updateCategories: updatedCategoriesWithOrder });
         console.log("success")
       } catch (error) {
         console.error('API Error:', error);
@@ -58,7 +58,7 @@ const AllFoodRendering = ({ categories }: { categories: CategoryWithMenuItems[] 
         setOrderedCategories(updatedCategories);
 
         try {
-          await axios.patch(`api/category/reorder/menu-item`, { sourceCategory: sourceCategory });
+          await axios.patch(`/api/menu/menu-items/reorder`, { sourceCategory: sourceCategory });
           console.log("success")
         } catch (error) {
           console.error('API Error:', error);
@@ -77,8 +77,8 @@ const AllFoodRendering = ({ categories }: { categories: CategoryWithMenuItems[] 
         setOrderedCategories(updatedCategories);
 
         try {
-          await axios.patch(`api/menu-items/${movedMenuItem.id}`, { categoryId: movedMenuItem.categoryId });
-          await axios.patch(`api/category/reorder/menu-item`, { sourceCategory: sourceCategory, destCategory: destCategory });
+          await axios.patch(`/api/menu/menu-items/${movedMenuItem.id}`, { categoryId: movedMenuItem.categoryId });
+          await axios.patch(`/api/menu/menu-items/reorder`, { sourceCategory: sourceCategory, destCategory: destCategory });
           console.log("success")
         } catch (error) {
           console.error('API Error:', error);
@@ -101,8 +101,14 @@ const AllFoodRendering = ({ categories }: { categories: CategoryWithMenuItems[] 
                 index={index}
               />
             ))}
+            {categories.length === 0 && (
+              <div className="text-center">
+                No category found
+              </div>
+            )}
             {provided.placeholder}
           </div>
+          
         )}
       </Droppable>
     </DragDropContext>

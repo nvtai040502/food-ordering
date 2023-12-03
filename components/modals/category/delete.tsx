@@ -16,7 +16,7 @@ const DeleteCategoryModal = () => {
 
   const onSubmit = async () => {
     try {
-      await axios.delete(`/api/category/${data.category?.id}`)
+      await axios.delete(`/api/menu/categories/${data.category?.id}`)
       
       toast({
         title: "Delete Category Success",

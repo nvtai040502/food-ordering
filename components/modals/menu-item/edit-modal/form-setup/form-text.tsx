@@ -49,7 +49,7 @@ const FormTextSetup = ({
 
   const onSubmit = async (values: z.infer<typeof formScheme>) => {
     try {
-      await axios.patch(`/api/menu-items/${menuItem?.id}`, values)
+      await axios.patch(`/api/menu/menu-items/${menuItem?.id}`, values)
       toast({
         title: "Updated MenuItem Success",
       }) 
