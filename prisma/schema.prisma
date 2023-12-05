@@ -54,6 +54,8 @@ model MenuItem {
   
   categoryId String? @db.ObjectId
   category Category? @relation(fields: [categoryId], references: [id])
+
+  orders Order[]
 }
 
 model Order {
@@ -62,8 +64,11 @@ model Order {
   updatedAt DateTime @updatedAt
 
   paid Boolean @default(false)
+  amount Int @default(1)
 
   profileId String @db.ObjectId
   profile Profile @relation(fields: [profileId], references: [id])
 
+  menuItemId String @db.ObjectId
+  menuItem MenuItem @relation(fields: [menuItemId], references: [id])
 }

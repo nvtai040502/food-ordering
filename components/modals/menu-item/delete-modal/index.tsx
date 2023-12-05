@@ -1,5 +1,5 @@
-import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogFooter, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+"use client"
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
 import { useToast } from "@/components/ui/use-toast";
 import { useModal } from "@/hooks/use-modal-store";
 import axios from "axios";
@@ -24,7 +24,8 @@ const DeleteMenuItemModal = () => {
       router.refresh()
     } catch (error) {
       toast({
-        title: `Something went wrong ${error}`,
+        title: `Something went wrong`,
+        description: `Error: ${error}`
       });
     } finally {
       onClose()
@@ -32,22 +33,21 @@ const DeleteMenuItemModal = () => {
   }
 
   return ( 
-    <Dialog open={isModalOpen} onOpenChange={onClose}>
-      <DialogContent>
-        <DialogTitle>
-          Delete Menu Item
-        </DialogTitle>
-        <DialogDescription>
-          Are you sure, you want to delete Menu Item "{data.menuItem?.name}"
-        </DialogDescription>
-        <DialogFooter>
-          <Button onClick={onSubmit} variant="destructive">
-            Delete
-          </Button>
-        </DialogFooter>
+    <AlertDialog open={isModalOpen} onOpenChange={onClose}>
+      <AlertDialogContent>
+        <AlertDialogHeader>
+          <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+            <AlertDialogDescription>
+              This action cannot be undone. This will permanently delete menu item {data.menuItem?.name}.
+            </AlertDialogDescription>
+        </AlertDialogHeader>
+        <AlertDialogFooter>
+          <AlertDialogCancel>Cancel</AlertDialogCancel>
+          <AlertDialogAction onClick={onSubmit}>Continue</AlertDialogAction>
+        </AlertDialogFooter>
         
-      </DialogContent>
-    </Dialog>
+      </AlertDialogContent>
+    </AlertDialog>
    );
 }
  

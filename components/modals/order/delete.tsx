@@ -6,21 +6,20 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 
 
-const DeleteCategoryModal = () => {
+const DeleteOrderModal = () => {
   const { isOpen, onClose, type, data } = useModal();
   
 
-  const isModalOpen = isOpen && type === "deleteCategory";
+  const isModalOpen = isOpen && type === "deleteOrder";
   const { toast } = useToast()
   
   const router = useRouter()
-
   const onSubmit = async () => {
     try {
-      await axios.delete(`/api/menu/categories/${data.category?.id}`)
+      await axios.delete(`/api/menu/menu-items/${data.menuItem?.id}/orders/${data.order?.id}`)
       
       toast({
-        title: "Delete Category Success",
+        title: "Delete Order Success",
       })
       router.refresh()
     } catch (error) {
@@ -39,7 +38,7 @@ const DeleteCategoryModal = () => {
         <AlertDialogHeader>
           <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
             <AlertDialogDescription>
-              This action cannot be undone. This will permanently delete this category name {data.category?.name}.
+              This action cannot be undone. This will permanently delete this order.
             </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
@@ -52,4 +51,4 @@ const DeleteCategoryModal = () => {
    );
 }
  
-export default DeleteCategoryModal;
+export default DeleteOrderModal;

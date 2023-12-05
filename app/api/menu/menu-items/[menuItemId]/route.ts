@@ -55,7 +55,13 @@ export async function DELETE(
       return new NextResponse("Unauthorized", { status: 401 });
     }
 
-     const menuItem = await db.menuItem.deleteMany({
+    await db.order.deleteMany({
+      where: {
+        menuItemId: params.menuItemId
+      }
+    })   
+
+    const menuItem = await db.menuItem.delete({
       where: {
         id: params.menuItemId
       }

@@ -1,8 +1,10 @@
 "use client"
 import NoImageRendering from "@/components/no-image";
 import { Button } from "@/components/ui/button";
+import { useToast } from "@/components/ui/use-toast";
 import { formatPrice } from "@/lib/fotmat-price";
 import { MenuItem } from "@prisma/client";
+import axios from "axios";
 import { BookmarkPlus } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -13,6 +15,17 @@ interface MenuItemRenderingProps {
 
 const MenuItemRendering = ({ menuItem }: MenuItemRenderingProps) => {
   const router = useRouter();
+  const { toast } = useToast()
+  const addToCart = async (event: React.MouseEvent<HTMLButtonElement>) => {
+    try {
+      event.stopPropagation(); // Prevents the click event from propagating to the parent div
+      await axios.post(`/api/menu/menu-items/${menuItem.id}/orders`);
+      toast({title: "Add to cart success"})
+      router.refresh()
+    } catch (error) {
+      console.log("[Add_to_Cart_Error]", error);
+    }
+  };
 
   const onClick = () => {
       try {
@@ -44,7 +57,7 @@ const MenuItemRendering = ({ menuItem }: MenuItemRenderingProps) => {
           <div>
             {formatPrice(menuItem.basePrice)}
           </div>
-          <Button variant="outline">
+          <Button variant="outline" onClick={addToCart}>
             <BookmarkPlus />
           </Button>
         </div>

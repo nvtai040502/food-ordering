@@ -42,7 +42,7 @@ const Navbar = () => {
         {user.isSignedIn ? (
             <div className="flex items-center">
               {/* If login */}
-              <Link href="/profile">
+              <Link href="/setting/profile">
                 <Button variant="ghost">
                   Hello, {user.user.firstName}
                 </Button>
@@ -60,7 +60,9 @@ const Navbar = () => {
             </div>
           )}
           <ModeToggle />
-          <Button variant="ghost"> <ShoppingCart /> </Button>
+          <Link href="/cart">
+            <Button variant="ghost"> <ShoppingCart /> </Button>
+          </Link> 
       </div>
 
     </div>
