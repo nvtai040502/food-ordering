@@ -2,9 +2,7 @@ import { db } from "@/lib/db";
 import { auth, redirectToSignIn } from "@clerk/nextjs";
 import OrdersRendering from "./_components/orders-rendering";
 import TotalPrice from "./_components/total-price";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
-import { Separator } from "@/components/ui/separator";
+
 
 const CartPage = async () => {
   const { userId } = auth();
