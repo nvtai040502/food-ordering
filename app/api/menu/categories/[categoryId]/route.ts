@@ -43,13 +43,9 @@ export async function DELETE(
       return new NextResponse("Unauthorized", { status: 401 });
     }
 
-    // First, Dissociate all menu items associated with the category
-    await db.menuItem.updateMany({
+    await db.menuItem.deleteMany({
       where: {
         categoryId: params.categoryId,
-      },
-      data: {
-        categoryId: null,
       },
     });
 

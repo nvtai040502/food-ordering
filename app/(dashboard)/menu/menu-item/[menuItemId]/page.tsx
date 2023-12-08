@@ -68,7 +68,7 @@ const MenuItemIdPage = async ({
                 size
               </p>
               <div>
-                {menuItem.size}
+                {}
               </div>
             </div>
 

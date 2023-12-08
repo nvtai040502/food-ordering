@@ -47,13 +47,13 @@ model MenuItem {
 
   imageUrl String?
   name String
-  description String 
-  basePrice Int
-  size String
+  description String?
+  basePrice Int?
+  sizes Size[]
   order Int?
   
-  categoryId String? @db.ObjectId
-  category Category? @relation(fields: [categoryId], references: [id])
+  categoryId String @db.ObjectId
+  category Category @relation(fields: [categoryId], references: [id])
 
   orders Order[]
 }
@@ -71,4 +71,16 @@ model Order {
 
   menuItemId String @db.ObjectId
   menuItem MenuItem @relation(fields: [menuItemId], references: [id])
+}
+
+model Size {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  name        String
+  price       String
+
+  menuItemId String @db.ObjectId
+  menuItem    MenuItem @relation(fields: [menuItemId], references: [id])
 }

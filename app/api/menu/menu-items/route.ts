@@ -13,28 +13,20 @@ export async function POST(
 
     const { 
       name,
-      imageUrl,
-      categoryId,
-      description,
-      basePrice,
-      size
+      categoryId
     } = await req.json()    
     
      const menuItem = await db.menuItem.create({
         data: {
           name,
-          imageUrl,
-          categoryId,
-          description,
-          basePrice,
-          size
+          categoryId
         }
       });
     
 
     return NextResponse.json(menuItem)
   } catch(error) {
-    console.log("[MENU_ITEM_POST]", error);
+    console.log("[MENU_ITEMS_POST]", error);
       
     return new NextResponse("Internal Error", { status: 500 })
   }

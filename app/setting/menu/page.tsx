@@ -1,12 +1,12 @@
 import { db } from "@/lib/db";
-import CreateCategory from "../category/_component/create-category";
-import CreateMenuItem from "../menu-items/_components/create-menu-item";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 import { CategoryWithMenuItems } from "@/type";
 import AllFoodRendering from "./_components/rendering";
 import SearchComponent from "@/components/search";
 import { getCategories } from "@/action/get-categories";
+import CreateCategory from "./_components/create/category";
+import CreateMenuItem from "./_components/create/menu-item";
 
 interface MenuSettingPageProps {
   searchParams: {
@@ -34,12 +34,14 @@ const MenuSettingPage  = async ({
       </div>
       <div className="flex justify-between items-center">
         <DropdownMenu>
+
           <DropdownMenuTrigger asChild>
             <Button>Create</Button>
           </DropdownMenuTrigger>
+
           <DropdownMenuContent className="w-56">
-          <CreateCategory />
-          <CreateMenuItem categories={categories} />
+            <CreateCategory />
+            <CreateMenuItem categories={categories} />
           </DropdownMenuContent>
         </DropdownMenu>
 
