@@ -74,12 +74,13 @@ model Order {
 }
 
 model Size {
-  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  id String   @id @default(auto()) @map("_id") @db.ObjectId
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   
-  name        String
-  price       String
+  name String
+  price Int
+  order Int? 
 
   menuItemId String @db.ObjectId
   menuItem    MenuItem @relation(fields: [menuItemId], references: [id])

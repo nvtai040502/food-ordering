@@ -45,7 +45,7 @@ const MenuItemIdSettingPage = async ({
         
           <div className="flex flex-col gap-y-6">
 
-            <FormMenuItemSetup menuItem={menuItem} formType="size" />
+            <FormMenuItemSetup menuItem={menuItem} formType="sizes" />
             <FormMenuItemSetup menuItem={menuItem} formType="basePrice" />
 
           </div>

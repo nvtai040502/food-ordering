@@ -8,6 +8,8 @@ import DeleteMenuItemModal from "../modals/menu-item/delete-modal";
 import EditCategoryModal from "../modals/category/edit";
 import CreateCategoryModal from "../modals/category/create";
 import DeleteOrderModal from "../modals/order/delete";
+import EditSizeModal from "../modals/size/edit";
+import DeleteSizeModal from "../modals/size/delete";
 
 
 
@@ -36,6 +38,10 @@ export function ModalProvider() {
 
       {/* Order */}
       <DeleteOrderModal />
+
+      {/* Size */}
+      <EditSizeModal />
+      <DeleteSizeModal />
     </>
   )
 }

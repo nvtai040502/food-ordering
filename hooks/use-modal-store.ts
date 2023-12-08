@@ -1,4 +1,4 @@
-import { Category, MenuItem, Order } from "@prisma/client"
+import { Category, MenuItem, Order, Size } from "@prisma/client"
 import { create } from "zustand"
 
 export type ModalType = 
@@ -8,13 +8,16 @@ export type ModalType =
 "createMenuItem" |
 "editMenuItem" |
 "deleteMenuItem" |
-"deleteOrder"
+"deleteOrder" |
+"editSize" |
+"deleteSize"
 
 export type ModalData = {
   category?: Category
   categories?: Category[]
   menuItem?: MenuItem
   order?: Order
+  size?: Size
 }
 
 

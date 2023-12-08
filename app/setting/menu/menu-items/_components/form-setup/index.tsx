@@ -5,12 +5,12 @@ import FormCategory from "./form-category";
 import { db } from "@/lib/db";
 import FormName from "./form-name";
 import FormBasePrice from "./form-baseprice";
-import FormSize from "./form-size";
+import FormSizes from "./form-sizes";
 
 
 interface FormMenuItemSetupProps {
   menuItem: MenuItem
-  formType: "name" | "description" | "category" | "image" | "basePrice" | "size"
+  formType: "name" | "description" | "category" | "image" | "basePrice" | "sizes"
 }
 const FormMenuItemSetup = async ({
   menuItem, 
@@ -30,6 +30,14 @@ const FormMenuItemSetup = async ({
 
   const categories = await db.category.findMany()
 
+  const sizes = await db.size.findMany({
+    where: {
+      menuItemId: menuItem.id
+    }, orderBy: {
+      order: "asc"
+    }
+  })
+
   return ( 
     <div className='border rounded-md p-4'>
       {formType === "name" && <FormName menuItem={menuItem}/>}
@@ -37,7 +45,7 @@ const FormMenuItemSetup = async ({
       {formType === "image" && <FormImage menuItem={menuItem} />}
       {formType === "category" && <FormCategory menuItem={menuItem} category={category} categories={categories}/>}
       {formType === "basePrice" && <FormBasePrice menuItem={menuItem} />}
-      {formType === "size" && <FormSize menuItem={menuItem}/>}
+      {formType === "sizes" && <FormSizes menuItem={menuItem} sizes={sizes}/>}
     </div>
    );
 }
