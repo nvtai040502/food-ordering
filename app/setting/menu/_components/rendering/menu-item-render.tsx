@@ -45,10 +45,9 @@ const MenuItemRendering = ({
             </div>
             
           <div
-            className="flex flex-col items-center justify-center gap-2"
+            className="flex flex-col items-center justify-center gap-2 whitespace-normal truncate"
             >
-            <h2 className="text-lg font-bold">{menuItem.name} {menuItem.order}</h2>
-            <p className="text-sm">{menuItem.description}</p>  
+            <h2 className="text-lg font-bold">{menuItem.name} </h2>
             
           </div>
         </div>

@@ -1,4 +1,4 @@
-import Navbar from "@/components/navbar";
+import NavBar from "@/components/navbar";
 import React from "react";
 
 const DashboardLayout = ({
@@ -7,8 +7,9 @@ const DashboardLayout = ({
 ) => {
   return ( 
     <div className="p-8">
-      <div className="flex flex-col gap-8">
-        <Navbar />
+      <NavBar mode="shopping" />
+      <div className="mt-20">
+        
         {children}
       </div>
     </div>
