@@ -1,5 +1,5 @@
 "use client"
-import NoImageRendering from "@/components/no-image";
+import NoImageRendering from "@/components/no-image-render";
 import { Button } from "@/components/ui/button";
 import { useModal } from "@/hooks/use-modal-store";
 import { formatPrice } from "@/lib/fortmat-price";

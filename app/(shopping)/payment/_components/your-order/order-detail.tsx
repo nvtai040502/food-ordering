@@ -10,7 +10,7 @@ const OrderDetail = ({
   menuItem
 }: OrderDetailProps
 ) => {
-  const subtotal = order.amount * menuItem.basePrice
+  const subtotal = order.amount * ( menuItem.basePrice || 0)
 
   return ( 
     <div className=" flex justify-between">

@@ -1,5 +1,5 @@
-import Loading from "@/components/loading";
-import NoImageRendering from "@/components/no-image";
+import LoadingPart from "@/components/loading/loading-part";
+import NoImageRendering from "@/components/no-image-render";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
 import { formatPrice } from "@/lib/fortmat-price";
@@ -43,7 +43,7 @@ const OrderCard = ({
   return ( 
     <div className="relative">
       {isDelete && (
-        <Loading />
+        <LoadingPart />
       )}
       <div className="flex items-center gap-4 justify-between">
         <div className="relative aspect-video h-20 w-20">

@@ -31,15 +31,15 @@ const CategoryIdMenuPage = async ({
   })
 
   if (!category) {
-    return redirect("/menu")
+    return redirect("/")
   }
 
   return ( 
     <div>
       <div className="flex justify-between items-center">
         <GoBack 
-          href="/menu"
-          title="Back to menu page"
+          href="/"
+          title="Back to home page"
         />
         <SearchComponent placeholder="Search for menu item" />
       </div>

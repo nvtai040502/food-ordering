@@ -52,7 +52,7 @@ const CartHover = ({ orders }: CartHoverProps) => {
             <Link href="/cart">
               <Button className="w-full">View Cart</Button>
             </Link>
-            <Link href="/checkout">
+            <Link href="/payment">
               <Button className="w-full">Payment</Button>
             </Link>
           </>

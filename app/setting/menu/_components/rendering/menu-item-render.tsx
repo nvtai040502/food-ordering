@@ -1,5 +1,5 @@
 "use client"
-import NoImageRendering from "@/components/no-image";
+import NoImageRendering from "@/components/no-image-render";
 import { useModal } from "@/hooks/use-modal-store";
 import { CategoryWithMenuItems } from "@/type";
 import {  Draggable, Droppable } from "@hello-pangea/dnd";

@@ -1,6 +1,6 @@
 
 import GoBack from "@/components/go-back";
-import NoImageRendering from "@/components/no-image";
+import NoImageRendering from "@/components/no-image-render";
 import { db } from "@/lib/db";
 import { formatPrice } from "@/lib/fortmat-price";
 import Image from "next/image";
@@ -39,8 +39,8 @@ const MenuItemIdPage = async ({
   return ( 
     <div className="flex flex-col gap-8">
         <GoBack
-          href="/menu"
-          title="Back to menu page"
+          href="/"
+          title="Back to home page"
         />
 
         <div className="grid grid-cols-2 gap-8">

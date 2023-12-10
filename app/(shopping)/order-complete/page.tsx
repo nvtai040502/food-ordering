@@ -1,7 +1,7 @@
 const OrderCompletePage = () => {
   return ( 
     <div>
-      
+      ORDER COMPLETE!
     </div>
    );
 }
