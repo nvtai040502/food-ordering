@@ -6,6 +6,7 @@ import { formatPrice } from "@/lib/fortmat-price";
 import { Category, MenuItem } from "@prisma/client";
 import { BookmarkPlus } from "lucide-react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 interface MenuItemRenderingProps {
   menuItem: MenuItem;
@@ -18,9 +19,9 @@ const MenuItemRendering = ({
  }: MenuItemRenderingProps
 ) => {
 
-  const { onOpen } = useModal()
+  const router = useRouter()
   const onClick = () => {
-      onOpen("editMenuItem", { categories, menuItem })
+      router.push(`/setting/menu/menu-items/${menuItem.id}`)
     };
 
   return (
@@ -43,7 +44,7 @@ const MenuItemRendering = ({
 
         <div className="flex justify-between items-center">
           <div>
-            {formatPrice(menuItem.basePrice)}
+            {formatPrice(menuItem.basePrice || 0)}
           </div>
           <Button variant="outline">
             <BookmarkPlus />

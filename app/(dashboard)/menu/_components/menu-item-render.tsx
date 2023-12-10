@@ -53,8 +53,8 @@ const MenuItemRendering = ({ menuItem }: MenuItemRenderingProps) => {
           <NoImageRendering />
         )}
       </div>
-      <div className="flex flex-col gap-2">
-        <h2 className="text-lg font-bold text-center">
+      <div className="flex flex-col gap-2 whitespace-normal truncate">
+        <h2 className="text-lg font-bold text-center truncate">
           {menuItem.name}
         </h2>
 

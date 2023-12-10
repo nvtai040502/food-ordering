@@ -8,6 +8,7 @@ import { redirect } from "next/navigation";
 import AddToCart from "./_components/add-to-cart";
 import { Separator } from "@/components/ui/separator";
 import RelatedFood from "./_components/related-food";
+import { Preview } from "@/components/preview";
 
 interface MenuItemIdPageProps{
   params: {menuItemId: string}
@@ -57,7 +58,7 @@ const MenuItemIdPage = async ({
               </h1>
               
               <h2 className="text-xl">
-                {formatPrice(menuItem.basePrice)}
+                {formatPrice(menuItem.basePrice || 0)}
               </h2>
 
               <Separator />
@@ -84,7 +85,7 @@ const MenuItemIdPage = async ({
         <div className="flex flex-col gap-4">
           <p>Description</p>
           <div>
-            {menuItem.description}
+            <Preview value={menuItem.description || ""} />
           </div>
         </div>
 

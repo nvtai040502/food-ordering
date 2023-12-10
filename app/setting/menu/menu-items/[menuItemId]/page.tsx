@@ -1,6 +1,7 @@
 import { db } from "@/lib/db";
 import { redirect } from "next/navigation";
 import FormMenuItemSetup from "../_components/form-setup";
+import GoBack from "@/components/go-back";
 
 interface MenuItemIdSettingPageProps {
   params: { menuItemId: string }
@@ -21,14 +22,17 @@ const MenuItemIdSettingPage = async ({
 
   return ( 
     <div className="flex flex-col gap-8">
-      
-      <div className="flex flex-col gap-2">
-        <h1 className="text-2xl font-medium">
-          Menu Item Setup
-        </h1>
-        <div className="text-sm">
-          Complete all fields 
-        </div>
+      <div>
+        <GoBack 
+          title="Back to menu setting"
+          href="/setting/menu"
+        />
+        <div className="flex flex-col gap-2">
+          <h1 className="text-2xl font-medium text-center">
+            Menu Item Setup
+          </h1>
+      </div>
+
       </div>
 
       <div className="flex justify-between items-center">

@@ -36,15 +36,13 @@ const CategoryRendering = ({
           className=" border-4 p-4 flex flex-col gap-4">
           
           <div className='flex flex-col justify-center items-center'>
-            <Link href={`/setting/menu/categories/${category.id}`}>
-              <Button variant="link">
-                <div 
-                  {...provided.dragHandleProps}
-                  className='font-medium text-2xl text-primary'>
-                  {category.name}
-                </div>
-              </Button>
+            <Link
+              href={`/setting/menu/categories/${category.id}`}
+              {...provided.dragHandleProps}
+              className='font-medium text-2xl text-primary hover:underline'>
+              {category.name}
             </Link>
+
             <div className=' flex justify-center items-center gap-4'>
               <Button size="sm" variant="ghost" onClick={() => onOpen("editCategory", {category})}>Edit</Button>
               <Button size="sm" variant="ghost" onClick={() => onOpen("deleteCategory", {category})}>Delete</Button>

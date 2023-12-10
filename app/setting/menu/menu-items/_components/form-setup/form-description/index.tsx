@@ -12,7 +12,7 @@ import { useToast } from '@/components/ui/use-toast';
 import { MenuItem } from '@prisma/client';
 import { useRouter } from 'next/navigation';
 import Editor from './editor';
-import { Preview } from './preview';
+import { Preview } from '@/components/preview';
 
 const formScheme = z.object({
   description: z.string().min(2, {

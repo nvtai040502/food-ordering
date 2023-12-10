@@ -5,6 +5,7 @@ import { CategoryWithMenuItems } from "@/type";
 import {  Draggable, Droppable } from "@hello-pangea/dnd";
 import { Category, MenuItem } from "@prisma/client";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 interface MenuItemRenderingProps {
   categories: CategoryWithMenuItems[]
@@ -17,7 +18,11 @@ const MenuItemRendering = ({
   menuItem,
   index
 }: MenuItemRenderingProps) => {
-  const { onOpen } = useModal();
+
+  const router = useRouter()
+  const onClick = () => {
+    router.push(`/setting/menu/menu-items/${menuItem.id}`)
+  }
 
   return (
     <Draggable
@@ -30,7 +35,7 @@ const MenuItemRendering = ({
           {...provided.draggableProps}
           {...provided.dragHandleProps}
           role="button"
-          onClick={() => {onOpen("editMenuItem", { categories, menuItem })}} 
+          onClick={onClick} 
           className="group hover:bg-slate-200/90 dark:hover:bg-slate-600 hover:shadow-sm border rounded-lg p-4 flex flex-col gap-4 w-[180px]"
         >
           <div
