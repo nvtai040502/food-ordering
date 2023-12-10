@@ -13,6 +13,7 @@ const MenuPage = async ({
   searchParams
 }: MenuPageProps
 ) => {
+  
   const categories = await getCategories({
     ...searchParams
   })
@@ -21,7 +22,7 @@ const MenuPage = async ({
     <div className=" flex flex-col gap-8">
       <div className=" flex justify-between items-center">
         <h1 className="text-2xl text-primary font-medium">
-          Menu Page
+          Home Page
         </h1>
         <SearchComponent placeholder="Search for category" />
       </div>

@@ -1,5 +1,5 @@
 "use client"
-import NoImageRendering from "@/components/no-image";
+import NoImageRendering from "@/components/no-image-render";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
 import { useModal } from "@/hooks/use-modal-store";

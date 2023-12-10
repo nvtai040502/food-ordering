@@ -1,7 +1,7 @@
 import NavBar from "@/components/navbar";
 import React from "react";
 
-const DashboardLayout = ({
+const ShoppingLayout = ({
   children
 }:{children: React.ReactNode}
 ) => {
@@ -16,4 +16,4 @@ const DashboardLayout = ({
    );
 }
  
-export default DashboardLayout;
+export default ShoppingLayout;

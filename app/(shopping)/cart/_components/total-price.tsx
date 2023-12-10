@@ -1,6 +1,6 @@
 "use client"
 import getTotalPrice from "@/action/get-total-price";
-import Loading from "@/components/loading";
+import LoadingPart from "@/components/loading/loading-part";
 import { Button } from "@/components/ui/button";
 import { formatPrice } from "@/lib/fortmat-price";
 import { OrderWithMenuItems } from "@/type";
@@ -38,7 +38,7 @@ const TotalPrice = ({ orders }: TotalPriceProps) => {
   return (
     <div className="relative">
     {isLoading && (
-      <Loading />
+      <LoadingPart />
     )}
       <div className="flex flex-col gap-4 justify-center ">
         <h1 className=" text-xl border-b-4">
@@ -72,10 +72,10 @@ const TotalPrice = ({ orders }: TotalPriceProps) => {
           </p>
         </div>
 
-        <Link href="/checkout">
+        <Link href="/payment">
           <Button size="lg" className="w-full">
             <h2 className="text-xl">
-              PROCEED TO CHECKOUT
+              PROCEED TO PAYMENT
             </h2>
           </Button>
         </Link>

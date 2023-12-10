@@ -1,5 +1,6 @@
 "use client"
-import NoImageRendering from "@/components/no-image";
+import LoadingPage from "@/components/loading/loading-page";
+import NoImageRendering from "@/components/no-image-render";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
 import { formatPrice } from "@/lib/fortmat-price";
@@ -8,6 +9,7 @@ import axios from "axios";
 import { BookmarkPlus } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 interface MenuItemRenderingProps {
   menuItem: MenuItem;
@@ -32,14 +34,21 @@ const MenuItemRendering = ({ menuItem }: MenuItemRenderingProps) => {
     }
   };
 
+  const [isLoading, setIsLoading] = useState(false)
   const onClick = () => {
+      setIsLoading(true)
       try {
-        router.push(`/menu/menu-item/${menuItem.id}`);
+        router.push(`/menu-item/${menuItem.id}`);
       } catch (error) {
         console.log(error);
+      } finally {
+        setIsLoading(false)
       }
     };
 
+  if (isLoading) {
+    return <LoadingPage />
+  }
   return (
     <div
       role="button"

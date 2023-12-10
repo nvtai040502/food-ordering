@@ -35,7 +35,7 @@ const CreateCategoryModal = () => {
 
   const onSubmit = async (values: z.infer<typeof formScheme>) => {
     try {
-      await axios.post(`/api.menu/categories`, values)
+      await axios.post(`/api/menu/categories`, values)
       toast({
         title: "Create Category Success",
       })

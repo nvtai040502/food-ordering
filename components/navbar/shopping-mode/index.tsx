@@ -29,9 +29,7 @@ const NavbarShoppingMode = async () => {
           <Link href="/">
             <Button variant="ghost"> Hone </Button>
           </Link>
-          <Link href="/menu">
-            <Button variant="ghost"> Menu </Button>
-          </Link>  
+          
         </div>
       
       </div>

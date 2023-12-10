@@ -24,7 +24,7 @@ const CategoryRendering = async ({
 
   return ( 
       <div className="flex flex-col gap-4">
-        <Link href={`/menu/category/${category.id}`}>
+        <Link href={`/category/${category.id}`}>
           <Button variant="link" className="w-full">
             <h1 className="text-primary text-2xl text-center">
               {category.name}

@@ -13,7 +13,7 @@ import { MenuItem } from '@prisma/client';
 import { useRouter } from 'next/navigation';
 import { FileUpload } from '@/components/file-upload';
 import Image from 'next/image';
-import NoImageRendering from '@/components/no-image';
+import NoImageRendering from '@/components/no-image-render';
 
 const formScheme = z.object({
   imageUrl: z.string()
