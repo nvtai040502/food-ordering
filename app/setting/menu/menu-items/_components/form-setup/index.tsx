@@ -1,11 +1,11 @@
 import { Category, MenuItem } from "@prisma/client";
-import FormDescription from "./form-description";
 import FormImage from "./form-image";
 import FormCategory from "./form-category";
 import { db } from "@/lib/db";
 import FormName from "./form-name";
 import FormBasePrice from "./form-baseprice";
 import FormSizes from "./form-sizes";
+import FormDescription from "./form-description";
 
 
 interface FormMenuItemSetupProps {

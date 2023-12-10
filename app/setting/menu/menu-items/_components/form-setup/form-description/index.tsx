@@ -11,6 +11,8 @@ import axios from 'axios';
 import { useToast } from '@/components/ui/use-toast';
 import { MenuItem } from '@prisma/client';
 import { useRouter } from 'next/navigation';
+import Editor from './editor';
+import { Preview } from './preview';
 
 const formScheme = z.object({
   description: z.string().min(2, {
@@ -72,9 +74,9 @@ const FormDescription = ({menuItem}: {menuItem: MenuItem}) => {
         </div>
         
         { !isEditting ? (
-          <div className=' text-sm'>
-              {menuItem.description}
-          </div>
+            <Preview
+            value={menuItem.description || ""}
+          />
         ): (
         
         <Form {...form}>
@@ -87,9 +89,7 @@ const FormDescription = ({menuItem}: {menuItem: MenuItem}) => {
                 <FormItem>
                   
                   <FormControl>
-                    <Input 
-                    placeholder="Enter menu item description" 
-                    {...field} />
+                    <Editor {...field} />
                   </FormControl>
                   
                   <FormMessage />
