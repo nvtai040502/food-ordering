@@ -1,4 +1,4 @@
-import { formatPrice } from "@/lib/fotmat-price";
+import { formatPrice } from "@/lib/fortmat-price";
 import { MenuItem, Order } from "@prisma/client";
 
 interface OrderDetailProps {

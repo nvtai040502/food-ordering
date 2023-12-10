@@ -1,7 +1,7 @@
 import { Separator } from "@/components/ui/separator";
 import { OrderWithMenuItems } from "@/type";
 import OrderDetail from "./order-detail";
-import { formatPrice } from "@/lib/fotmat-price";
+import { formatPrice } from "@/lib/fortmat-price";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 

@@ -2,7 +2,7 @@
 import NoImageRendering from "@/components/no-image";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
-import { formatPrice } from "@/lib/fotmat-price";
+import { formatPrice } from "@/lib/fortmat-price";
 import { MenuItem } from "@prisma/client";
 import axios from "axios";
 import { BookmarkPlus } from "lucide-react";
@@ -19,10 +19,15 @@ const MenuItemRendering = ({ menuItem }: MenuItemRenderingProps) => {
   const addToCart = async (event: React.MouseEvent<HTMLButtonElement>) => {
     try {
       event.stopPropagation(); // Prevents the click event from propagating to the parent div
-      await axios.post(`/api/menu/menu-items/${menuItem.id}/orders`);
+      await axios.post(`/api/menu/menu-items/${menuItem.id}/orders`, {amount: 1});
       toast({title: "Add to cart success"})
       router.refresh()
     } catch (error) {
+      toast({
+        title: "Something went wrong",
+        description: `Error: ${error}`
+    })
+
       console.log("[Add_to_Cart_Error]", error);
     }
   };
@@ -55,7 +60,7 @@ const MenuItemRendering = ({ menuItem }: MenuItemRenderingProps) => {
 
         <div className="flex justify-between items-center">
           <div>
-            {formatPrice(menuItem.basePrice)}
+            {formatPrice(menuItem.basePrice || 0)}
           </div>
           <Button variant="outline" onClick={addToCart}>
             <BookmarkPlus />

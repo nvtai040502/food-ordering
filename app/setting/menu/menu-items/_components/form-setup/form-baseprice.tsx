@@ -11,7 +11,7 @@ import axios from 'axios';
 import { useToast } from '@/components/ui/use-toast';
 import { MenuItem } from '@prisma/client';
 import { useRouter } from 'next/navigation';
-import { formatPrice } from '@/lib/fotmat-price';
+import { formatPrice } from '@/lib/fortmat-price';
 
 const formScheme = z.object({
   basePrice: z.coerce.number()

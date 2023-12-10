@@ -1,15 +1,19 @@
-"use client"
-import { ShoppingCart } from "lucide-react";
-import { Button } from "./ui/button";
+import { Button } from "../ui/button";
 import Link from "next/link";
-import { UserButton, useUser } from "@clerk/nextjs";
-import { ModeToggle } from "./mode-toggle";
-import { ModeMobile } from "./mode-mobile";
+import { UserButton, auth } from "@clerk/nextjs";
+import { ModeToggle } from "../mode-toggle";
+import { ModeMobile } from "../mode-mobile";
+import { getOrdersWithMenuItems } from "@/action/get-orders";
+import { OrderWithMenuItems } from "@/type";
+import CartHover from "./cart-hover";
 
 
-const Navbar = () => {
-  const user = useUser()
-  
+const Navbar = async () => {
+  const { userId } = auth()
+  let ordersWithMenuItems:OrderWithMenuItems[] = []
+  if (userId) {
+    ordersWithMenuItems = await getOrdersWithMenuItems()
+  }
   return ( 
     <div className=" flex justify-between items-center">
       
@@ -38,16 +42,24 @@ const Navbar = () => {
         <ModeMobile />
       </div>
 
-      <div className="flex gap-2">
-        {user.isSignedIn ? (
-            <div className="flex items-center">
-              {/* If login */}
-              <Link href="/setting/profile">
-                <Button variant="ghost">
-                  Hello, {user.user.firstName}
-                </Button>
-              </Link>
-            </div>
+      
+        {userId ? (
+          // If Login
+          <div className="flex gap-2 items-center">
+              
+            <Link href="/setting/profile">
+              <Button variant="ghost">
+                Hello
+              </Button>
+            </Link>
+
+            <ModeToggle />
+            <UserButton afterSignOutUrl="/" />
+            <CartHover orders={ordersWithMenuItems}/>
+
+
+          </div>
+            
           ) : (
             <div className=" flex gap-2 ">
               {/* If not login yet */}
@@ -57,13 +69,10 @@ const Navbar = () => {
               <Link href="/sign-up">
                 <Button variant="secondary">Register</Button>
               </Link>
+              <ModeToggle />
             </div>
           )}
-          <ModeToggle />
-          <Link href="/cart">
-            <Button variant="ghost"> <ShoppingCart /> </Button>
-          </Link> 
-      </div>
+           
 
     </div>
    );

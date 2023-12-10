@@ -1,7 +1,8 @@
 "use client"
+import getTotalPrice from "@/action/get-total-price";
 import Loading from "@/components/loading";
 import { Button } from "@/components/ui/button";
-import { formatPrice } from "@/lib/fotmat-price";
+import { formatPrice } from "@/lib/fortmat-price";
 import { OrderWithMenuItems } from "@/type";
 import { MenuItem, Order } from "@prisma/client";
 import axios from "axios";
@@ -21,19 +22,7 @@ const TotalPrice = ({ orders }: TotalPriceProps) => {
     const fetchOrderData = async () => {
       setIsLoading(true);
       try {
-        const updatedOrders = await Promise.all(
-          orders.map(async (order) => {
-            const response = await axios.get(`/api/menu/menu-items/${order.menuItem?.id}/orders/${order.id}`);
-            const { amount: updatedAmount } = response.data;
-            return { ...order, amount: updatedAmount }; 
-          })
-        );
-
-        const newTotalPrice = updatedOrders.reduce((total, updatedOrder) => {
-          const orderAmount = updatedOrder.amount || 0; // Added null check
-          const menuItemPrice = updatedOrder.menuItem?.basePrice || 0;
-          return total + orderAmount * menuItemPrice;
-        }, 0);
+        const newTotalPrice = await getTotalPrice({orders})
 
         setTotalPrice(newTotalPrice);
       } catch (error) {

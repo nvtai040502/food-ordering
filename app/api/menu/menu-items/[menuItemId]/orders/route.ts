@@ -39,15 +39,13 @@ export async function POST(
         },
       });
     } else {
-
       const { amount } = await req.json()
-
       order = await db.order.update({
         where: {
           id: existingOrder.id,
         },
         data: {
-          amount: existingOrder.amount + (amount || 1), // Increment amount by 'amount' or default to 1
+          amount: existingOrder.amount + amount, 
         },
       });
     }

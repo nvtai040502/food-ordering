@@ -10,7 +10,7 @@ import {
 } from "@hello-pangea/dnd";
 import { Grip, Pencil, Trash2 } from "lucide-react";
 
-import { formatPrice } from "@/lib/fotmat-price";
+import { formatPrice } from "@/lib/fortmat-price";
 import { Button } from "@/components/ui/button";
 import axios from "axios";
 import { useToast } from "@/components/ui/use-toast";

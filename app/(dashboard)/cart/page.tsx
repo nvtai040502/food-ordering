@@ -1,41 +1,10 @@
-import { db } from "@/lib/db";
-import { auth, redirectToSignIn } from "@clerk/nextjs";
 import OrdersRendering from "./_components/orders-rendering";
 import TotalPrice from "./_components/total-price";
+import { getOrdersWithMenuItems } from "@/action/get-orders";
 
 
 const CartPage = async () => {
-  const { userId } = auth();
-  if (!userId) {
-    return redirectToSignIn();
-  }
-  
-  const profile = await db.profile.findUnique({
-    where: {
-      userId: userId
-    }
-  });
-
-  if (!profile) {
-    return redirectToSignIn();
-  }
-
-  const orders = await db.order.findMany({
-    where: {
-      profileId: profile.id
-    }
-  });
-
-  const ordersWithMenuItems = await Promise.all(
-    orders.map(async (order) => {
-      const menuItem = await db.menuItem.findUnique({
-        where: {
-          id: order.menuItemId
-        }
-      });
-      return { ...order, menuItem };
-    })
-  );
+  const ordersWithMenuItems = await getOrdersWithMenuItems()
   
   return ( 
     <div>

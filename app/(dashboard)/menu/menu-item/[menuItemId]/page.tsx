@@ -2,7 +2,7 @@
 import GoBack from "@/components/go-back";
 import NoImageRendering from "@/components/no-image";
 import { db } from "@/lib/db";
-import { formatPrice } from "@/lib/fotmat-price";
+import { formatPrice } from "@/lib/fortmat-price";
 import Image from "next/image";
 import { redirect } from "next/navigation";
 import AddToCart from "./_components/add-to-cart";

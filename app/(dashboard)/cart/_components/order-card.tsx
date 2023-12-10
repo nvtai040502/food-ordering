@@ -3,7 +3,7 @@ import NoImageRendering from "@/components/no-image";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
 import { useModal } from "@/hooks/use-modal-store";
-import { formatPrice } from "@/lib/fotmat-price";
+import { formatPrice } from "@/lib/fortmat-price";
 import { MenuItem, Order } from "@prisma/client";
 import axios from "axios";
 import { Minus, Plus, Trash, XCircle } from "lucide-react";
@@ -88,7 +88,7 @@ const OrderCard = ({
     
       <div className="flex gap-6 items-center justify-between">
         <div className=" font-medium">
-          {formatPrice(menuItem.basePrice)}
+          {formatPrice(menuItem.basePrice || 0)}
         </div>
         <div className=" flex items-center">
           <Button variant="ghost" onClick={onMinus}>
@@ -100,7 +100,7 @@ const OrderCard = ({
           </Button>
         </div>
         <div className=" font-medium">
-          {formatPrice(menuItem.basePrice * amount)}
+          {formatPrice(menuItem.basePrice || 0 * amount)}
         </div>
       </div>
 

@@ -2,7 +2,7 @@
 import NoImageRendering from "@/components/no-image";
 import { Button } from "@/components/ui/button";
 import { useModal } from "@/hooks/use-modal-store";
-import { formatPrice } from "@/lib/fotmat-price";
+import { formatPrice } from "@/lib/fortmat-price";
 import { Category, MenuItem } from "@prisma/client";
 import { BookmarkPlus } from "lucide-react";
 import Image from "next/image";
