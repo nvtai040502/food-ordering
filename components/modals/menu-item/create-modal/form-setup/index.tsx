@@ -21,10 +21,10 @@ const formScheme = z.object({
 
 });
 interface FormMenuItemSetupProps {
-  categories: Category[]
+  categories: Category[] | undefined
 }
 const FormMenuItemSetup = ({
-  categories,
+  categories
 }: FormMenuItemSetupProps
 ) => {
   const form = useForm<z.infer<typeof formScheme>>({

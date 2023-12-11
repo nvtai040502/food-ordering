@@ -12,7 +12,6 @@ import { useRouter } from 'next/navigation';
 import { MenuItem, Size } from '@prisma/client';
 import { useToast } from '@/components/ui/use-toast';
 import { SizesList } from './sizes-list';
-import Loading from '@/components/loading';
 
 const formScheme = z.object({
   name: z.string(),
