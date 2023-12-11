@@ -19,7 +19,6 @@ export async function PATCH(
       categoryId,
       description,
       basePrice,
-      size
     } = await req.json()    
     
      const menuItem = await db.menuItem.update({
@@ -32,7 +31,6 @@ export async function PATCH(
           categoryId,
           description,
           basePrice,
-          size
         }
       });
     
